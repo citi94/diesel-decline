@@ -369,6 +369,187 @@ tr:hover {
     background: #f0f0f0;
 }
 
+/* Norway Page Specific Styles */
+.norway-hero {
+    background: linear-gradient(135deg, #003087 0%, #BA0C2F 100%);
+}
+
+.timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 100%;
+    background: var(--border);
+}
+
+.timeline-item {
+    padding: 20px;
+    width: 45%;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+    text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+    left: 55%;
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: var(--accent);
+    border-radius: 50%;
+    top: 25px;
+}
+
+.timeline-item:nth-child(odd)::after {
+    right: -32px;
+}
+
+.timeline-item:nth-child(even)::after {
+    left: -32px;
+}
+
+.timeline-year {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--accent);
+}
+
+.timeline-content {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.comparison-table {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.country-column {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.country-column h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.flag {
+    font-size: 2rem;
+}
+
+.metric-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.metric-row:last-child {
+    border-bottom: none;
+}
+
+.metric-value {
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.ahead-badge {
+    background: var(--success);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-left: 10px;
+}
+
+.prediction-box {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: white;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    margin: 40px 0;
+}
+
+.prediction-box h3 {
+    color: var(--accent);
+    margin-bottom: 20px;
+}
+
+.prediction-years {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.prediction-year {
+    text-align: center;
+}
+
+.prediction-year .year {
+    font-size: 2.5rem;
+    font-weight: 800;
+}
+
+.prediction-year .event {
+    opacity: 0.9;
+    max-width: 200px;
+}
+
+/* Logo link styling */
+.logo a {
+    color: white;
+    text-decoration: none;
+}
+
+.logo a:hover {
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .timeline::before {
+        left: 20px;
+    }
+    .timeline-item {
+        width: calc(100% - 50px);
+        left: 50px !important;
+        text-align: left !important;
+    }
+    .timeline-item::after {
+        left: -42px !important;
+        right: auto !important;
+    }
+    .comparison-table {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* Methodology */
 .method-steps {
     display: grid;
