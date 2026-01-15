@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Decline of Diesel: When Will UK Petrol Stations Stop Selling It?</title>
+    <meta name="description" content="Data-driven analysis of UK diesel vehicle trends using MOT test data. Predicting when diesel fuel demand will collapse.">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Diesel Decline</div>
+            <ul>
+                <li><a href="#problem">The Problem</a></li>
+                <li><a href="#data">The Data</a></li>
+                <li><a href="#findings">Key Findings</a></li>
+                <li><a href="#prediction">Prediction</a></li>
+                <li><a href="#methodology">Methodology</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="hero-content">
+                <h1>The Decline of Diesel</h1>
+                <p class="subtitle">Will your local petrol station stop selling diesel?</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">-74%</span>
+                        <span class="stat-label">Diesel consumption by 2035</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">5.1%</span>
+                        <span class="stat-label">New car sales that are diesel (2025)</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">3.7M</span>
+                        <span class="stat-label">Fewer diesel cars than 2019</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Problem -->
+        <section id="problem" class="content-section">
+            <div class="container">
+                <h2>The Problem</h2>
+                <div class="two-column">
+                    <div class="column">
+                        <p>In 2016, nearly <strong>half of all new cars sold in the UK were diesel</strong>. Today, that figure has collapsed to just 5%.</p>
+                        <p>The diesel fleet is ageing rapidly. With so few new diesels entering the market, the total number of diesel vehicles on UK roads is shrinking every year.</p>
+                        <p>This raises a critical question: <strong>when will diesel demand fall so low that petrol stations stop selling it?</strong></p>
+                    </div>
+                    <div class="column">
+                        <div class="info-box">
+                            <h3>Why Does This Matter?</h3>
+                            <ul>
+                                <li>Millions of people still drive diesel cars</li>
+                                <li>Rural areas depend on diesel vehicles</li>
+                                <li>Commercial vehicles are 85% diesel</li>
+                                <li>Infrastructure changes take years to plan</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Data -->
+        <section id="data" class="content-section alt-bg">
+            <div class="container">
+                <h2>The Data</h2>
+                <p class="section-intro">We analysed the UK's MOT test database - one of the most comprehensive vehicle datasets in the world.</p>
+
+                <div class="data-sources">
+                    <div class="data-card">
+                        <div class="data-icon">🚗</div>
+                        <h3>MOT Test Data</h3>
+                        <p class="big-number">760 million</p>
+                        <p>MOT tests analysed</p>
+                        <p class="detail">Including 243 million diesel tests from 26 million unique diesel vehicles</p>
+                    </div>
+                    <div class="data-card">
+                        <div class="data-icon">📊</div>
+                        <h3>Date Range</h3>
+                        <p class="big-number">20 years</p>
+                        <p>of historical data</p>
+                        <p class="detail">From 2005 to present, tracking every MOT test in GB and NI</p>
+                    </div>
+                    <div class="data-card">
+                        <div class="data-icon">📍</div>
+                        <h3>Odometer Readings</h3>
+                        <p class="big-number">96%</p>
+                        <p>have valid mileage</p>
+                        <p class="detail">Allowing us to calculate how many miles diesels actually drive</p>
+                    </div>
+                </div>
+
+                <div class="methodology-note">
+                    <p><strong>Additional sources:</strong> SMMT new vehicle registrations, GOV.UK fuel consumption statistics, DfT National Travel Survey</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Findings -->
+        <section id="findings" class="content-section">
+            <div class="container">
+                <h2>Key Findings</h2>
+
+                <!-- Finding 1: Sales Collapse -->
+                <div class="finding">
+                    <h3>1. New Diesel Sales Have Collapsed</h3>
+                    <p>Diesel's share of new car sales has fallen from 47% in 2016 to just 5% in 2025 - an unprecedented collapse driven by Dieselgate, emissions regulations, and the rise of electric vehicles.</p>
+                    <div class="chart-container">
+                        <canvas id="salesChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Finding 2: Fleet Age -->
+                <div class="finding">
+                    <h3>2. The Diesel Fleet is Ageing Fast</h3>
+                    <p>Most diesel cars on UK roads today were registered between 2013-2017. These vehicles are now 8-12 years old, and there are very few younger diesels to replace them.</p>
+                    <div class="chart-container">
+                        <canvas id="fleetAgeChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Finding 3: Survival Rates -->
+                <div class="finding">
+                    <h3>3. Diesel Vehicles Don't Last Forever</h3>
+                    <p>Using MOT data, we calculated survival rates. By age 15, only 66% of diesel cars are still on the road. By age 20, just 18% remain.</p>
+                    <div class="chart-container">
+                        <canvas id="survivalChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Finding 4: Mileage Decline -->
+                <div class="finding">
+                    <h3>4. Diesels Are Being Driven Less</h3>
+                    <p>Not only are there fewer diesels, but they're being driven less. A 5-year-old diesel in 2015 had 60,700 miles on average. Today, it's just 50,400 miles - a 17% drop.</p>
+                    <div class="chart-container">
+                        <canvas id="mileageTrendChart"></canvas>
+                    </div>
+                    <p class="chart-note">This reflects changing work patterns (more working from home), higher fuel costs, and owners switching high-mileage driving to newer vehicles.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Prediction -->
+        <section id="prediction" class="content-section alt-bg">
+            <div class="container">
+                <h2>The Prediction</h2>
+                <p class="section-intro">Combining survival rates, new sales data, and mileage patterns, we built a model to predict future diesel consumption.</p>
+
+                <div class="prediction-highlight">
+                    <h3>Diesel Car Consumption Forecast</h3>
+                    <div class="chart-container large">
+                        <canvas id="forecastChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="forecast-table">
+                    <h3>Key Milestones</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Year</th>
+                                <th>Diesel Cars</th>
+                                <th>Consumption</th>
+                                <th>Change vs 2024</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2024</td>
+                                <td>9.7 million</td>
+                                <td>7.1 billion litres</td>
+                                <td>Baseline</td>
+                            </tr>
+                            <tr>
+                                <td>2030</td>
+                                <td>6.4 million</td>
+                                <td>4.2 billion litres</td>
+                                <td class="negative">-40%</td>
+                            </tr>
+                            <tr>
+                                <td>2035</td>
+                                <td>2.9 million</td>
+                                <td>1.8 billion litres</td>
+                                <td class="negative">-74%</td>
+                            </tr>
+                            <tr>
+                                <td>2040</td>
+                                <td>1.1 million</td>
+                                <td>0.7 billion litres</td>
+                                <td class="negative">-91%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="implications">
+                    <h3>What Does This Mean?</h3>
+                    <div class="implication-cards">
+                        <div class="impl-card">
+                            <h4>By 2030</h4>
+                            <p>Diesel demand will be 40% lower than today. Some rural stations may start removing diesel pumps.</p>
+                        </div>
+                        <div class="impl-card">
+                            <h4>By 2035</h4>
+                            <p>With 74% less demand, many stations will question whether diesel is economically viable.</p>
+                        </div>
+                        <div class="impl-card">
+                            <h4>By 2040</h4>
+                            <p>Diesel cars will be rare collector items. Commercial vehicles will be the main diesel users.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Methodology -->
+        <section id="methodology" class="content-section">
+            <div class="container">
+                <h2>Methodology</h2>
+
+                <div class="method-steps">
+                    <div class="method-step">
+                        <div class="step-number">1</div>
+                        <h3>Vehicle Survival Rates</h3>
+                        <p>We analysed 26 million diesel vehicles to calculate what percentage are still on the road at each age. Vehicles "survive" if they have a valid MOT in 2024-2025.</p>
+                    </div>
+                    <div class="method-step">
+                        <div class="step-number">2</div>
+                        <h3>Annual Mileage by Age</h3>
+                        <p>By comparing consecutive MOT odometer readings, we calculated how many miles diesel vehicles drive each year, broken down by vehicle age.</p>
+                    </div>
+                    <div class="method-step">
+                        <div class="step-number">3</div>
+                        <h3>Fleet Projection</h3>
+                        <p>Starting with historical sales data, we applied survival rates to project how many diesels will be on the road each year through 2040.</p>
+                    </div>
+                    <div class="method-step">
+                        <div class="step-number">4</div>
+                        <h3>Consumption Calculation</h3>
+                        <p>Fleet size × annual mileage × fuel economy = total litres consumed. We validated this against actual fuel sales data.</p>
+                    </div>
+                </div>
+
+                <div class="validation-box">
+                    <h3>Model Validation</h3>
+                    <p>We backtested our model against historical data from 2015-2024. The model predictions were within 10-15% of actual fuel consumption figures - a reasonable margin given the complexity of the system.</p>
+                </div>
+
+                <div class="limitations">
+                    <h3>Limitations & Caveats</h3>
+                    <ul>
+                        <li>This analysis covers <strong>diesel cars only</strong>, not vans, lorries, or buses</li>
+                        <li>Commercial vehicles (vans/HGVs) will maintain diesel demand longer than cars</li>
+                        <li>Regional variation exists - rural areas may retain diesel infrastructure longer</li>
+                        <li>Policy changes (e.g., ULEZ expansion) could accelerate or slow the decline</li>
+                        <li>Some external data (pre-2019 fleet sizes) are estimates, not confirmed figures</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Explorer -->
+        <section id="explore" class="content-section alt-bg">
+            <div class="container">
+                <h2>Explore the Data</h2>
+                <p class="section-intro">Adjust the assumptions to see how they affect the prediction.</p>
+
+                <div class="explorer">
+                    <div class="controls">
+                        <div class="control-group">
+                            <label for="salesDecline">Annual decline in new diesel sales:</label>
+                            <input type="range" id="salesDecline" min="5" max="25" value="15">
+                            <span id="salesDeclineValue">15%</span>
+                        </div>
+                        <div class="control-group">
+                            <label for="mileageChange">Annual change in mileage per vehicle:</label>
+                            <input type="range" id="mileageChange" min="-5" max="2" value="-2">
+                            <span id="mileageChangeValue">-2%</span>
+                        </div>
+                        <div class="control-group">
+                            <label for="survivalBoost">Survival rate adjustment:</label>
+                            <input type="range" id="survivalBoost" min="-20" max="20" value="0">
+                            <span id="survivalBoostValue">0%</span>
+                        </div>
+                    </div>
+                    <div class="explorer-chart">
+                        <canvas id="explorerChart"></canvas>
+                    </div>
+                    <div id="explorerResults" class="explorer-results">
+                        <p>2030 consumption: <span id="result2030">4.2B litres</span></p>
+                        <p>2035 consumption: <span id="result2035">1.8B litres</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section id="about" class="content-section">
+            <div class="container">
+                <h2>About This Analysis</h2>
+                <p>This analysis was conducted using publicly available MOT test data from the DVSA, combined with vehicle registration data from SMMT and fuel consumption statistics from GOV.UK.</p>
+                <p>The source code and data processing scripts are available on GitHub.</p>
+                <div class="cta-buttons">
+                    <a href="https://github.com/citi94/diesel-decline" class="btn btn-primary">View on GitHub</a>
+                    <a href="data/methodology.html" class="btn btn-secondary">Full Methodology</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Data sources: DVSA MOT History API, SMMT, GOV.UK, DfT National Travel Survey</p>
+            <p>Analysis conducted January 2026</p>
+        </div>
+    </footer>
+
+    <script src="js/charts.js"></script>
+    <script src="js/explorer.js"></script>
+</body>
+</html>

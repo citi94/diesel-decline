@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Methodology - Diesel Decline Analysis</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a href="../index.html" style="color: white; text-decoration: none;">Diesel Decline</a></div>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="#data-sources">Data Sources</a></li>
+                <li><a href="#survival">Survival Model</a></li>
+                <li><a href="#consumption">Consumption Model</a></li>
+                <li><a href="#validation">Validation</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="content-section">
+            <div class="container">
+                <h1 style="text-align: center; color: var(--primary); margin-bottom: 40px;">Full Methodology</h1>
+
+                <div id="data-sources" class="methodology-section">
+                    <h2>1. Data Sources</h2>
+
+                    <h3>MOT Test Data (Primary Source)</h3>
+                    <p>The UK's MOT (Ministry of Transport) test is required annually for vehicles over 3 years old. The DVSA (Driver and Vehicle Standards Agency) provides bulk access to historical MOT data through their API.</p>
+
+                    <table>
+                        <tr><th>Metric</th><th>Value</th></tr>
+                        <tr><td>Total MOT tests analysed</td><td>760 million</td></tr>
+                        <tr><td>Diesel tests</td><td>243 million</td></tr>
+                        <tr><td>Unique diesel vehicles</td><td>25.9 million</td></tr>
+                        <tr><td>Date range</td><td>2005 - 2025</td></tr>
+                        <tr><td>Valid odometer readings</td><td>96.1%</td></tr>
+                    </table>
+
+                    <h3>External Data Sources</h3>
+                    <ul>
+                        <li><strong>SMMT</strong> - New vehicle registration data by fuel type (2005-2025)</li>
+                        <li><strong>GOV.UK</strong> - Fuel consumption statistics, vehicle licensing data</li>
+                        <li><strong>DfT National Travel Survey</strong> - Average annual mileage by fuel type</li>
+                    </ul>
+
+                    <div class="info-box" style="margin-top: 20px;">
+                        <h4>Data Quality Notes</h4>
+                        <ul>
+                            <li>MOT data covers MOT Class 4 (passenger cars) only - vans and HGVs are not included</li>
+                            <li>Some early-year fleet size estimates are interpolated between confirmed data points</li>
+                            <li>Confirmed data points: 2019 (12.0M diesel cars) and 2024 (8.3M diesel cars) from GOV.UK</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="survival" class="methodology-section" style="margin-top: 60px;">
+                    <h2>2. Vehicle Survival Model</h2>
+
+                    <h3>Definition</h3>
+                    <p>Survival rate is the proportion of vehicles originally registered in a given year that are still actively on the road (defined as having a valid MOT in 2024-2025).</p>
+
+                    <h3>Calculation Method</h3>
+                    <pre style="background: #f7fafc; padding: 20px; border-radius: 8px; overflow-x: auto;">
+For each registration year (2005-2020):
+  total_registered = COUNT DISTINCT vehicles with fuelType='DIESEL'
+  still_active = COUNT DISTINCT vehicles with MOT in 2024 or 2025
+  survival_rate = still_active / total_registered
+                    </pre>
+
+                    <h3>Results</h3>
+                    <table>
+                        <tr><th>Vehicle Age</th><th>Survival Rate</th><th>Notes</th></tr>
+                        <tr><td>5 years</td><td>98.3%</td><td>Very few losses</td></tr>
+                        <tr><td>10 years</td><td>91.2%</td><td>Still most vehicles active</td></tr>
+                        <tr><td>15 years</td><td>65.9%</td><td>Significant attrition begins</td></tr>
+                        <tr><td>20 years</td><td>18.4%</td><td>Majority scrapped</td></tr>
+                    </table>
+
+                    <h3>Key Insight</h3>
+                    <p>The survival curve shows that diesel vehicles have a roughly 15-year "half-life" - by age 15, only about 66% remain. This is critical for predicting future fleet size, as the peak diesel cohorts (2015-2017) will begin significant attrition from 2030 onwards.</p>
+                </div>
+
+                <div id="mileage" class="methodology-section" style="margin-top: 60px;">
+                    <h2>3. Annual Mileage Model</h2>
+
+                    <h3>Calculation Method</h3>
+                    <p>Annual mileage is calculated from consecutive MOT test odometer readings:</p>
+                    <pre style="background: #f7fafc; padding: 20px; border-radius: 8px; overflow-x: auto;">
+annual_miles = (odometer_reading_2 - odometer_reading_1) / years_between_tests * 365
+                    </pre>
+
+                    <p>To ensure accuracy, we filtered to:</p>
+                    <ul>
+                        <li>Test gaps of 300-450 days (approximately 1 year)</li>
+                        <li>Positive mileage increases only</li>
+                        <li>Mileage increases under 50,000 miles (to exclude data errors)</li>
+                    </ul>
+
+                    <h3>Results by Vehicle Age</h3>
+                    <table>
+                        <tr><th>Age</th><th>Median Annual Miles</th></tr>
+                        <tr><td>3 years</td><td>11,617</td></tr>
+                        <tr><td>5 years</td><td>9,344</td></tr>
+                        <tr><td>10 years</td><td>7,594</td></tr>
+                        <tr><td>15 years</td><td>6,015</td></tr>
+                        <tr><td>20 years</td><td>4,151</td></tr>
+                    </table>
+
+                    <h3>Mileage Decline Over Time</h3>
+                    <p>We also found that diesels are being driven less than they used to be. Comparing 5-year-old diesels:</p>
+                    <ul>
+                        <li>2015: Average 60,700 miles at MOT</li>
+                        <li>2024: Average 50,400 miles at MOT</li>
+                        <li><strong>Decline: 17%</strong></li>
+                    </ul>
+                    <p>This likely reflects increased working from home post-pandemic, higher fuel costs, and owners keeping diesels as second cars for occasional use.</p>
+                </div>
+
+                <div id="consumption" class="methodology-section" style="margin-top: 60px;">
+                    <h2>4. Consumption Model</h2>
+
+                    <h3>Formula</h3>
+                    <pre style="background: #f7fafc; padding: 20px; border-radius: 8px; overflow-x: auto;">
+For each year (2020-2040):
+  For each vehicle cohort (by registration year):
+    surviving_vehicles = original_sales × survival_rate(age)
+    annual_miles = mileage_by_age(age)
+    mpg = fuel_economy_by_age(age)
+
+    litres = (surviving_vehicles × annual_miles) / mpg × 4.546
+
+  total_consumption = SUM(litres for all cohorts)
+                    </pre>
+
+                    <h3>Key Assumptions</h3>
+                    <table>
+                        <tr><th>Parameter</th><th>Value</th><th>Source</th></tr>
+                        <tr><td>New diesel sales (2026+)</td><td>15% annual decline</td><td>SMMT forecasts</td></tr>
+                        <tr><td>Fuel economy (new)</td><td>55 MPG (UK)</td><td>Industry average</td></tr>
+                        <tr><td>Fuel economy (age 20)</td><td>38 MPG (UK)</td><td>Estimated degradation</td></tr>
+                        <tr><td>UK gallon to litres</td><td>4.546</td><td>Standard conversion</td></tr>
+                    </table>
+                </div>
+
+                <div id="validation" class="methodology-section" style="margin-top: 60px;">
+                    <h2>5. Model Validation</h2>
+
+                    <h3>Backtest Against Historical Data</h3>
+                    <p>We tested the model against known fuel consumption data from 2015-2024:</p>
+
+                    <table>
+                        <tr><th>Year</th><th>Predicted (Cars+Vans)</th><th>Actual Total Diesel</th><th>Error*</th></tr>
+                        <tr><td>2019</td><td>15.2B litres</td><td>30.2B litres</td><td>-8.6%</td></tr>
+                        <tr><td>2020</td><td>14.9B litres</td><td>25.0B litres</td><td>+8.3%</td></tr>
+                        <tr><td>2024</td><td>13.3B litres</td><td>28.2B litres</td><td>-14.5%</td></tr>
+                    </table>
+
+                    <p>*Error calculated assuming cars+vans are ~55% of total road diesel (remainder is HGVs, buses).</p>
+
+                    <div class="validation-box" style="margin-top: 20px;">
+                        <h4>Validation Result</h4>
+                        <p>The model predictions are within ±15% of the benchmark for most years. The 2020 over-prediction reflects the model not accounting for COVID-19 lockdowns. Overall, the model provides a reasonable basis for future projections.</p>
+                    </div>
+                </div>
+
+                <div id="limitations" class="methodology-section" style="margin-top: 60px;">
+                    <h2>6. Limitations</h2>
+
+                    <h3>Known Limitations</h3>
+                    <ul>
+                        <li><strong>Cars only:</strong> This analysis covers diesel passenger cars. Vans (which are 85% diesel) and HGVs are modeled separately with less precision.</li>
+                        <li><strong>No regional breakdown:</strong> Rural areas with fewer EV charging options may retain diesel longer.</li>
+                        <li><strong>Policy uncertainty:</strong> Future ULEZ expansions, tax changes, or bans could accelerate decline.</li>
+                        <li><strong>Van data simplified:</strong> Van fleet modeling uses aggregate assumptions rather than detailed cohort analysis.</li>
+                    </ul>
+
+                    <h3>Sensitivity Analysis</h3>
+                    <p>The interactive explorer on the main page allows users to adjust key assumptions and see the impact on predictions. Key sensitivities:</p>
+                    <ul>
+                        <li>±10% change in survival rates shifts 2035 consumption by approximately ±0.2B litres</li>
+                        <li>±5% change in annual mileage decline shifts 2035 consumption by approximately ±0.3B litres</li>
+                    </ul>
+                </div>
+
+                <div style="margin-top: 60px; text-align: center;">
+                    <a href="../index.html" class="btn btn-primary">Back to Main Analysis</a>
+                    <a href="https://github.com/citi94/diesel-decline" class="btn btn-secondary">View Source Code</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Data sources: DVSA MOT History API, SMMT, GOV.UK, DfT National Travel Survey</p>
+            <p>Analysis conducted January 2026</p>
+        </div>
+    </footer>
+</body>
+</html>

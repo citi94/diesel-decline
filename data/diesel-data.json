@@ -1,0 +1,140 @@
+{
+  "metadata": {
+    "title": "UK Diesel Vehicle Analysis",
+    "date_generated": "2026-01-15",
+    "sources": [
+      "DVSA MOT History API",
+      "SMMT Vehicle Registrations",
+      "GOV.UK Vehicle Statistics",
+      "DfT National Travel Survey"
+    ]
+  },
+  "mot_summary": {
+    "total_diesel_tests": 242820598,
+    "unique_diesel_vehicles": 25865077,
+    "date_range": {
+      "start": "2005-01-01",
+      "end": "2025-12-14"
+    },
+    "odometer_coverage_pct": 96.1
+  },
+  "survival_rates": {
+    "description": "Proportion of vehicles still on road (MOT'd in 2024-2025) by age",
+    "data": {
+      "0": 1.000,
+      "1": 0.998,
+      "2": 0.995,
+      "3": 0.990,
+      "4": 0.987,
+      "5": 0.983,
+      "6": 0.971,
+      "7": 0.958,
+      "8": 0.944,
+      "9": 0.931,
+      "10": 0.912,
+      "11": 0.885,
+      "12": 0.851,
+      "13": 0.803,
+      "14": 0.731,
+      "15": 0.659,
+      "16": 0.569,
+      "17": 0.434,
+      "18": 0.345,
+      "19": 0.256,
+      "20": 0.184
+    }
+  },
+  "annual_mileage_by_age": {
+    "description": "Median annual miles driven by vehicle age",
+    "data": {
+      "0": 12000,
+      "1": 11800,
+      "2": 11700,
+      "3": 11617,
+      "4": 9769,
+      "5": 9344,
+      "6": 8977,
+      "7": 8625,
+      "8": 8286,
+      "9": 7923,
+      "10": 7594,
+      "11": 7266,
+      "12": 6959,
+      "13": 6647,
+      "14": 6284,
+      "15": 6015,
+      "16": 5644,
+      "17": 5328,
+      "18": 4946,
+      "19": 4514,
+      "20": 4151
+    }
+  },
+  "new_car_sales": {
+    "description": "Diesel share of new car registrations by year",
+    "data": [
+      {"year": 2005, "diesel_share_pct": 22.0, "diesel_new_cars": 535920},
+      {"year": 2010, "diesel_share_pct": 28.0, "diesel_new_cars": 568680},
+      {"year": 2015, "diesel_share_pct": 45.0, "diesel_new_cars": 1185300},
+      {"year": 2016, "diesel_share_pct": 47.0, "diesel_new_cars": 1265710},
+      {"year": 2017, "diesel_share_pct": 43.0, "diesel_new_cars": 1092630},
+      {"year": 2018, "diesel_share_pct": 30.0, "diesel_new_cars": 709860},
+      {"year": 2019, "diesel_share_pct": 22.0, "diesel_new_cars": 508420},
+      {"year": 2020, "diesel_share_pct": 16.0, "diesel_new_cars": 261760},
+      {"year": 2021, "diesel_share_pct": 9.0, "diesel_new_cars": 148230},
+      {"year": 2022, "diesel_share_pct": 8.0, "diesel_new_cars": 129120},
+      {"year": 2023, "diesel_share_pct": 7.5, "diesel_new_cars": 142500},
+      {"year": 2024, "diesel_share_pct": 6.5, "diesel_new_cars": 130000},
+      {"year": 2025, "diesel_share_pct": 5.1, "diesel_new_cars": 103020}
+    ]
+  },
+  "fleet_age_distribution": {
+    "description": "Active diesel vehicles by registration year (MOT'd 2024-2025)",
+    "data": [
+      {"reg_year": 2022, "age": 3, "active_vehicles": 119649},
+      {"reg_year": 2021, "age": 4, "active_vehicles": 199947},
+      {"reg_year": 2020, "age": 5, "active_vehicles": 283997},
+      {"reg_year": 2019, "age": 6, "active_vehicles": 568333},
+      {"reg_year": 2018, "age": 7, "active_vehicles": 686515},
+      {"reg_year": 2017, "age": 8, "active_vehicles": 949788},
+      {"reg_year": 2016, "age": 9, "active_vehicles": 1134352},
+      {"reg_year": 2015, "age": 10, "active_vehicles": 1109379},
+      {"reg_year": 2014, "age": 11, "active_vehicles": 1043839},
+      {"reg_year": 2013, "age": 12, "active_vehicles": 913461},
+      {"reg_year": 2012, "age": 13, "active_vehicles": 784198},
+      {"reg_year": 2011, "age": 14, "active_vehicles": 682541},
+      {"reg_year": 2010, "age": 15, "active_vehicles": 586862}
+    ],
+    "total_active": 10903680
+  },
+  "mileage_trends": {
+    "description": "Average mileage at MOT for 5-year-old diesels by test year",
+    "data": [
+      {"year": 2015, "avg_mileage": 60703},
+      {"year": 2016, "avg_mileage": 61161},
+      {"year": 2017, "avg_mileage": 59471},
+      {"year": 2018, "avg_mileage": 57155},
+      {"year": 2019, "avg_mileage": 56072},
+      {"year": 2020, "avg_mileage": 54195},
+      {"year": 2021, "avg_mileage": 50777},
+      {"year": 2022, "avg_mileage": 50170},
+      {"year": 2023, "avg_mileage": 49926},
+      {"year": 2024, "avg_mileage": 50385}
+    ],
+    "decline_2015_to_2024_pct": 17
+  },
+  "forecast": {
+    "description": "Predicted diesel car consumption (billion litres)",
+    "data": [
+      {"year": 2024, "fleet_millions": 9.65, "consumption_billion_litres": 7.06, "change_vs_2024_pct": 0},
+      {"year": 2025, "fleet_millions": 9.24, "consumption_billion_litres": 6.65, "change_vs_2024_pct": -6},
+      {"year": 2026, "fleet_millions": 8.77, "consumption_billion_litres": 6.22, "change_vs_2024_pct": -12},
+      {"year": 2027, "fleet_millions": 8.24, "consumption_billion_litres": 5.75, "change_vs_2024_pct": -19},
+      {"year": 2028, "fleet_millions": 7.67, "consumption_billion_litres": 5.27, "change_vs_2024_pct": -25},
+      {"year": 2029, "fleet_millions": 7.04, "consumption_billion_litres": 4.76, "change_vs_2024_pct": -33},
+      {"year": 2030, "fleet_millions": 6.36, "consumption_billion_litres": 4.23, "change_vs_2024_pct": -40},
+      {"year": 2035, "fleet_millions": 2.94, "consumption_billion_litres": 1.82, "change_vs_2024_pct": -74},
+      {"year": 2040, "fleet_millions": 1.07, "consumption_billion_litres": 0.65, "change_vs_2024_pct": -91}
+    ]
+  }
+}
