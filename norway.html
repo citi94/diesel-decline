@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons from Norway - The Diesel Decline</title>
+    <meta name="description" content="Norway's experience with EV adoption shows what happens to petrol stations when electric cars take over. A preview of the UK's diesel future.">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .norway-hero {
+            background: linear-gradient(135deg, #003087 0%, #BA0C2F 100%);
+        }
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 40px auto;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: var(--border);
+        }
+        .timeline-item {
+            padding: 20px;
+            width: 45%;
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+        .timeline-item:nth-child(even) {
+            left: 55%;
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+            top: 25px;
+        }
+        .timeline-item:nth-child(odd)::after {
+            right: -32px;
+        }
+        .timeline-item:nth-child(even)::after {
+            left: -32px;
+        }
+        .timeline-year {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+        .timeline-content {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .comparison-table {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .country-column {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .country-column h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .flag {
+            font-size: 2rem;
+        }
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .metric-row:last-child {
+            border-bottom: none;
+        }
+        .metric-value {
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .ahead-badge {
+            background: var(--success);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+        .prediction-box {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 40px 0;
+        }
+        .prediction-box h3 {
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        .prediction-years {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .prediction-year {
+            text-align: center;
+        }
+        .prediction-year .year {
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+        .prediction-year .event {
+            opacity: 0.9;
+            max-width: 200px;
+        }
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+            .timeline-item {
+                width: calc(100% - 50px);
+                left: 50px !important;
+                text-align: left !important;
+            }
+            .timeline-item::after {
+                left: -42px !important;
+                right: auto !important;
+            }
+            .comparison-table {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a href="index.html" style="color: white; text-decoration: none;">Diesel Decline</a></div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#norway-story">Norway's Story</a></li>
+                <li><a href="#comparison">UK Comparison</a></li>
+                <li><a href="#prediction">What This Means</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section id="hero" class="norway-hero">
+            <div class="hero-content">
+                <h1>Lessons from Norway</h1>
+                <p class="subtitle">The world's EV leader shows us what happens to petrol stations</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">96%</span>
+                        <span class="stat-label">of new cars in Norway are electric (2025)</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">-15%</span>
+                        <span class="stat-label">fuel sales since 2016 peak</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">3,500</span>
+                        <span class="stat-label">petrol station jobs lost (2014-2024)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Norway's Story -->
+        <section id="norway-story" class="content-section">
+            <div class="container">
+                <h2>Norway: 5-7 Years Ahead of the UK</h2>
+                <p class="section-intro">Norway's aggressive EV adoption policies have made it the world's leading market. What's happening to their petrol stations is a preview of the UK's future.</p>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">2016</div>
+                            <p><strong>Peak fuel sales</strong><br>5.26 billion litres of petrol and diesel sold - the highest ever. EV market share: 29%.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">2018</div>
+                            <p><strong>Tipping point</strong><br>EVs reach 49% of new car sales. Fuel sales begin noticeable decline.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">2020</div>
+                            <p><strong>Majority electric</strong><br>75% of new cars are electric. Total petroleum sales down to 8.2B litres. Circle K announces charger rollout.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">2022</div>
+                            <p><strong>Station transformation</strong><br>"Bensinstasjon" becomes "energistasjon". Major chains replace pumps with fast chargers. Road fuel down 20% from peak.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">2024</div>
+                            <p><strong>Diesel cars overtaken</strong><br>EVs now 29% of total fleet - more than petrol or diesel cars. 3,500 station jobs lost since 2014. Staffed stations down to 900.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">2025</div>
+                            <p><strong>Mission accomplished</strong><br>96% of new cars are electric. Circle K has equal chargers and fuel pumps. Remaining stations serve commercial vehicles and tourists.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Statistics -->
+        <section class="content-section alt-bg">
+            <div class="container">
+                <h2>The Numbers Tell the Story</h2>
+
+                <div class="data-sources">
+                    <div class="data-card">
+                        <div class="data-icon">⛽</div>
+                        <h3>Station Decline</h3>
+                        <p class="big-number">-46%</p>
+                        <p>stations since 1990</p>
+                        <p class="detail">From 2,928 stations (1990) to ~1,580 (2015) to ~900 staffed (2024)</p>
+                    </div>
+                    <div class="data-card">
+                        <div class="data-icon">👷</div>
+                        <h3>Job Losses</h3>
+                        <p class="big-number">-29%</p>
+                        <p>employees since 2014</p>
+                        <p class="detail">12,000 workers → 8,500 workers. Half of remaining staff are under 25.</p>
+                    </div>
+                    <div class="data-card">
+                        <div class="data-icon">🔌</div>
+                        <h3>Charger Growth</h3>
+                        <p class="big-number">1,000+</p>
+                        <p>Circle K charging points</p>
+                        <p class="detail">"Within 3 years we'll have as many chargers as fuel pumps" - Circle K Norway</p>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="norwayEvChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison -->
+        <section id="comparison" class="content-section">
+            <div class="container">
+                <h2>Norway vs UK: Where Are We?</h2>
+                <p class="section-intro">The UK in 2025 is roughly where Norway was in 2017-2018. This gives us a clear preview of what's coming.</p>
+
+                <div class="comparison-table">
+                    <div class="country-column">
+                        <h3><span class="flag">🇳🇴</span> Norway</h3>
+                        <div class="metric-row">
+                            <span>EV share of new sales (2025)</span>
+                            <span class="metric-value">96%</span>
+                        </div>
+                        <div class="metric-row">
+                            <span>EV share of total fleet</span>
+                            <span class="metric-value">29%</span>
+                        </div>
+                        <div class="metric-row">
+                            <span>Fuel sales vs peak</span>
+                            <span class="metric-value">-15%</span>
+                        </div>
+                        <div class="metric-row">
+                            <span>Diesel new car share</span>
+                            <span class="metric-value">~1%</span>
+                        </div>
+                        <div class="metric-row">
+                            <span>Years since peak diesel</span>
+                            <span class="metric-value">9 years (2016)</span>
+                        </div>
+                        <div class="metric-row">
+                            <span>Station job losses (10yr)</span>
+                            <span class="metric-value">-29%</span>
+                        </div>
+                    </div>
+                    <div class="country-column">
+                        <h3><span class="flag">🇬🇧</span> United Kingdom</h3>
+                        <div class="metric-row">
+                            <span>EV share of new sales (2025)</span>
+                            <span class="metric-value">23%</span>
+                        </div>
+                        <div class="metric-row">
+                            <span>EV share of total fleet</span>
+                            <span class="metric-value">~5%</span>
+                        </div>
+                        <div class="metric-row">
+                            <span>Fuel sales vs peak</span>
+                            <span class="metric-value">-8%</span>
+                        </div>
+                        <div class="metric-row">
+                            <span>Diesel new car share</span>
+                            <span class="metric-value">5.1%</span>
+                        </div>
+                        <div class="metric-row">
+                            <span>Years since peak diesel</span>
+                            <span class="metric-value">9 years (2016)</span>
+                        </div>
+                        <div class="metric-row">
+                            <span>Station job losses (10yr)</span>
+                            <span class="metric-value">TBD <span class="ahead-badge">Coming</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box" style="max-width: 800px; margin: 30px auto;">
+                    <h4>Key Insight: The Lag Effect</h4>
+                    <p>Norway peaked in new diesel sales around the same time as the UK (2016), but their EV adoption has been much faster. The UK is following the same trajectory but ~5-7 years behind.</p>
+                    <p style="margin-top: 15px;">When the UK reaches Norway's current 29% fleet EV share (projected ~2032-2035), we can expect similar impacts on fuel infrastructure.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chart: Mapping Norway to UK -->
+        <section class="content-section alt-bg">
+            <div class="container">
+                <h2>Mapping Norway's Experience to the UK</h2>
+
+                <div class="chart-container large">
+                    <canvas id="comparisonChart"></canvas>
+                </div>
+
+                <div class="methodology-note">
+                    <p><strong>Methodology:</strong> We align the UK's diesel car timeline with Norway's based on the peak diesel sales year (both 2016). Norway's subsequent decline shows what the UK can expect, adjusted for the different pace of EV adoption.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Predictions -->
+        <section id="prediction" class="content-section">
+            <div class="container">
+                <h2>What This Means for UK Diesel</h2>
+
+                <div class="prediction-box">
+                    <h3>Based on Norway's Experience, We Predict:</h3>
+                    <div class="prediction-years">
+                        <div class="prediction-year">
+                            <div class="year">2028</div>
+                            <div class="event">Major station chains announce pump-to-charger conversions</div>
+                        </div>
+                        <div class="prediction-year">
+                            <div class="year">2032</div>
+                            <div class="event">EVs overtake diesel in total UK fleet; rural stations begin closures</div>
+                        </div>
+                        <div class="prediction-year">
+                            <div class="year">2035</div>
+                            <div class="event">Diesel pumps disappear from urban forecourts; "energy stations" become norm</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="two-column" style="margin-top: 40px;">
+                    <div class="column">
+                        <h3>What Norway Teaches Us</h3>
+                        <ul style="list-style-position: inside; line-height: 2;">
+                            <li>Station transformation happens faster than expected</li>
+                            <li>Rural areas feel the impact first and hardest</li>
+                            <li>Commercial vehicles (vans, trucks) sustain diesel longer</li>
+                            <li>Chargers can share space with pumps during transition</li>
+                            <li>The "energy station" model can work economically</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>Key Differences for the UK</h3>
+                        <ul style="list-style-position: inside; line-height: 2;">
+                            <li>UK has 10x more vehicles - larger absolute numbers</li>
+                            <li>UK diesel share was higher than Norway's petrol peak</li>
+                            <li>UK EV charging infrastructure is less mature</li>
+                            <li>UK has more commercial diesel vehicles (vans)</li>
+                            <li>UK adoption may be faster once tipping point reached</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="validation-box" style="margin-top: 40px;">
+                    <h4>The Bottom Line</h4>
+                    <p>Norway's experience confirms our diesel consumption model. When EV share reaches 50%+ of new sales (UK expected ~2028), fuel sales begin accelerating decline. When EVs reach 30% of total fleet (UK expected ~2032-2035), stations begin significant restructuring.</p>
+                    <p style="margin-top: 10px;"><strong>The question isn't if, but when.</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sources -->
+        <section class="content-section alt-bg">
+            <div class="container">
+                <h2>Sources</h2>
+                <div class="limitations">
+                    <ul>
+                        <li><a href="https://www.ssb.no/en/energi-og-industri/olje-og-gass/statistikk/sal-av-petroleumsprodukt">Statistics Norway (SSB)</a> - Petroleum sales data</li>
+                        <li><a href="https://www.drivkraftnorge.no/Tall-og-fakta/salgsstatistikk/">Drivkraft Norge</a> - Industry fuel sales statistics</li>
+                        <li><a href="https://www.rystadenergy.com/news/norway-fuel-demand-electric-car-bus-truck-gasoline-diesel">Rystad Energy</a> - Norway road fuel demand analysis</li>
+                        <li><a href="https://electrek.co/2026/01/02/norway-reaches-97-ev-sales-as-evs-now-outnumber-diesels-on-its-roads/">Electrek</a> - Norway EV fleet milestones</li>
+                        <li><a href="https://www.dagsavisen.no/nyheter/har-mistet-3500-kollegaer-pa-ti-ar/9973976">Dagsavisen</a> - Petrol station employment data</li>
+                        <li><a href="https://dinside.dagbladet.no/motor/nesten-halvparten-av-bensinstasjonene-er-borte/66588091">Dagbladet</a> - Historical station numbers</li>
+                    </ul>
+                </div>
+
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="index.html" class="btn btn-primary">Back to UK Analysis</a>
+                    <a href="data/methodology.html" class="btn btn-secondary">Full Methodology</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Data sources: SSB, Drivkraft Norge, SMMT, GOV.UK</p>
+            <p>Analysis conducted January 2026</p>
+        </div>
+    </footer>
+
+    <script>
+        // Norway EV Market Share Chart
+        const norwayEvCtx = document.getElementById('norwayEvChart').getContext('2d');
+        new Chart(norwayEvCtx, {
+            type: 'line',
+            data: {
+                labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [
+                    {
+                        label: 'Norway EV Share (%)',
+                        data: [22, 29, 39, 49, 56, 75, 86, 79, 82, 89, 96],
+                        borderColor: '#003087',
+                        backgroundColor: 'rgba(0, 48, 135, 0.1)',
+                        fill: true,
+                        tension: 0.3
+                    },
+                    {
+                        label: 'UK EV Share (%)',
+                        data: [1, 1, 2, 2, 3, 11, 12, 17, 17, 20, 23],
+                        borderColor: '#1a365d',
+                        backgroundColor: 'rgba(26, 54, 93, 0.1)',
+                        fill: true,
+                        tension: 0.3,
+                        borderDash: [5, 5]
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'EV Share of New Car Sales: Norway vs UK',
+                        font: { size: 16 }
+                    },
+                    legend: { position: 'bottom' }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: { display: true, text: 'Market Share (%)' }
+                    }
+                }
+            }
+        });
+
+        // Comparison projection chart
+        const compCtx = document.getElementById('comparisonChart').getContext('2d');
+        new Chart(compCtx, {
+            type: 'line',
+            data: {
+                labels: ['Peak', '+2yr', '+4yr', '+6yr', '+8yr', '+10yr', '+12yr', '+15yr'],
+                datasets: [
+                    {
+                        label: 'Norway Fuel Sales (indexed)',
+                        data: [100, 98, 95, 90, 88, 85, 82, 75],
+                        borderColor: '#003087',
+                        backgroundColor: 'transparent',
+                        tension: 0.3,
+                        pointRadius: 5
+                    },
+                    {
+                        label: 'UK Diesel Consumption (projected)',
+                        data: [100, 98, 94, 88, 75, 60, 45, 26],
+                        borderColor: '#ed8936',
+                        backgroundColor: 'rgba(237, 137, 54, 0.1)',
+                        fill: true,
+                        tension: 0.3,
+                        pointRadius: 5
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Fuel/Diesel Decline from Peak Year (2016) - Norway Actual vs UK Projected',
+                        font: { size: 16 }
+                    },
+                    legend: { position: 'bottom' },
+                    annotation: {
+                        annotations: {
+                            line1: {
+                                type: 'line',
+                                xMin: 4,
+                                xMax: 4,
+                                borderColor: 'rgba(0,0,0,0.3)',
+                                borderDash: [5, 5],
+                                label: {
+                                    display: true,
+                                    content: '2024',
+                                    position: 'start'
+                                }
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 20,
+                        max: 105,
+                        title: { display: true, text: 'Index (Peak Year = 100)' }
+                    },
+                    x: {
+                        title: { display: true, text: 'Years Since Peak (2016)' }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

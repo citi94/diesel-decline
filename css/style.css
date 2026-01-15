@@ -336,6 +336,39 @@ tr:hover {
     font-size: 1.3rem;
 }
 
+/* Norway Callout */
+.norway-callout {
+    margin-top: 50px;
+    background: linear-gradient(135deg, #00205b 0%, #ba0c2f 100%);
+    color: white;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.norway-callout h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.norway-callout p {
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 15px;
+    opacity: 0.95;
+}
+
+.norway-callout .btn-primary {
+    background: white;
+    color: #00205b;
+    margin-top: 10px;
+}
+
+.norway-callout .btn-primary:hover {
+    background: #f0f0f0;
+}
+
 /* Methodology */
 .method-steps {
     display: grid;
